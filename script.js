@@ -5,7 +5,10 @@ const video = document.querySelector("video");
 
 function handleMove(e) {
   const y = e.pageY - speed.offsetTop;
-  const percent = y / speed.offsetHeight;
+  const percent = Math.min(
+    Math.max(y / speed.offsetHeight, 0),
+    1
+  );
 
   const min = 0.4;
   const max = 4;
@@ -18,3 +21,4 @@ function handleMove(e) {
 }
 
 speed.addEventListener("mousemove", handleMove);
+speed.addEventListener("click", handleMove);
